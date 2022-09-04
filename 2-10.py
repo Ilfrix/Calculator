@@ -37,7 +37,6 @@ while i >= 0 or next_val > 0:
     else:
         tmp = next_val
     next_val = tmp // 2
-    print(k, next_val)
     if (next_val > 0 and k % 4 == 0):
         add_r.append(k//4)
     new_val += str(tmp % 2)
