@@ -13,6 +13,7 @@ first, second = map(str, input().split())
 
 first = convert_value(first)
 second = convert_value(second)
+add_r =[] #we have move to up level
 
 #first number more or equel of length than second
 if (len(first) < len(second)):
@@ -27,13 +28,18 @@ print("second value:\t", second)
 
 #summarize values
 i = len(first) - 1
+k = 0
 while i >= 0 or next_val > 0:
+    k += 1
     if i >= 0:
         tmp = int(first[i]) + int(second[i]) + next_val
         i -= 1
     else:
         tmp = next_val
     next_val = tmp // 2
+    print(k, next_val)
+    if (next_val > 0 and k % 4 == 0):
+        add_r.append(k//4)
     new_val += str(tmp % 2)
 
 #add zeroes if we have more digits, than after enter
@@ -56,14 +62,15 @@ for i in range(len(new_val)):
     k += 1
 if tetr != '':
     arr.append(tetr)
+    
 
 
-#delete values more 9(in decimal form) from answer
+#delete values more 9(in decimal form) from answer OR move 1 to up level
 i = len(arr) - 1
 next_val = 0
 while i >= 0:
     tmp = int(arr[i],2) + next_val
-    if (tmp > 9):
+    if (tmp > 9 or ((len(arr) - i) in add_r)):
         tmp += 6
         next_val = tmp // 16
         tmp %= 16
@@ -83,5 +90,6 @@ print()
 print("result is:\t", end="")
 for i in range(len(answer)):
     print(answer[i], end=" ")
+print(add_r)
 
 
